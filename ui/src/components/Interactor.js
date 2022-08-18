@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Grid, Form, Dropdown, Input, Label } from 'semantic-ui-react'
 
-import { useSubstrateState } from './substrate-lib'
-import { TxButton, TxGroupButton } from './substrate-lib/components'
+import { useSubstrateState } from '../substrate-lib'
+import { TxButton, TxGroupButton } from '../substrate-lib/components'
 
 const argIsOptional = arg => arg.type.toString().startsWith('Option<')
 
@@ -161,7 +161,7 @@ function Main(props) {
       : 'Leaving this field as blank will submit a NONE value'
 
   return (
-    <Grid.Column width={8}>
+    <Grid.Column width={16} height={500}>
       <h1>Pallet Interactor</h1>
       <Form>
         <Form.Group style={{ overflowX: 'auto' }} inline>
@@ -179,27 +179,13 @@ function Main(props) {
             value="QUERY"
             checked={interxType === 'QUERY'}
             onChange={onInterxTypeChange}
-          />
-          <Form.Radio
-            label="RPC"
-            name="interxType"
-            value="RPC"
-            checked={interxType === 'RPC'}
-            onChange={onInterxTypeChange}
-          />
-          <Form.Radio
-            label="Constant"
-            name="interxType"
-            value="CONSTANT"
-            checked={interxType === 'CONSTANT'}
-            onChange={onInterxTypeChange}
-          />
+          />          
         </Form.Group>
         <Form.Field>
           <Dropdown
-            placeholder="Pallets / RPC"
+            placeholder="Pallets"
             fluid
-            label="Pallet / RPC"
+            label="Pallet"
             onChange={onPalletCallableParamChange}
             search
             selection

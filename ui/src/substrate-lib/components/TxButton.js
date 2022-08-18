@@ -12,7 +12,7 @@ function TxButton({
   disabled = false,
   label,
   setStatus,
-  style = null,
+  style,
   type = 'QUERY',
   txOnClickHandler = null,
 }) {
@@ -61,7 +61,7 @@ function TxButton({
 
   const txResHandler = ({ status }) =>
     status.isFinalized
-      ? setStatus(`😉 Finalized. Block hash: ${status.asFinalized.toString()}`)
+      ? setStatus(`Finalized. Block hash: ${status.asFinalized.toString()}`)
       : setStatus(`Current transaction status: ${status.type}`)
 
   const txErrHandler = err =>

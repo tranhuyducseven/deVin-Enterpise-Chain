@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Form, Input, Grid, Card, Statistic } from 'semantic-ui-react'
 
-import { useSubstrateState } from './substrate-lib'
-import { TxButton } from './substrate-lib/components'
+import { useSubstrateState } from '../substrate-lib'
+import { TxButton } from '../substrate-lib/components'
 
 function Main(props) {
   const { api } = useSubstrateState()
@@ -36,7 +36,7 @@ function Main(props) {
   }, [api.query.templateModule])
 
   return (
-    <Grid.Column width={8}>
+    <Grid.Column >
       <h1>Template Module</h1>
       <Card centered>
         <Card.Content textAlign="center">

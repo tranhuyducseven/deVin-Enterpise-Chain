@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Grid, Button, Label } from 'semantic-ui-react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { useSubstrateState } from './substrate-lib'
+import { Button, Grid, Label, Table } from 'semantic-ui-react'
+import { useSubstrateState } from '../substrate-lib'
 
 export default function Main(props) {
   const { api, keyring } = useSubstrateState()
@@ -67,9 +67,9 @@ export default function Main(props) {
                       circular
                       compact
                       size="mini"
-                      color="blue"
-                      icon="copy outline"
-                    />
+                      color="yellow"
+                      icon="copy"
+                    />                    
                   </CopyToClipboard>
                 </Table.Cell>
                 <Table.Cell width={3}>
