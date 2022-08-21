@@ -6,24 +6,23 @@ import {
   Grid,
   Loader,
   Message,
-  Sticky,
+  Sticky
 } from 'semantic-ui-react'
 
 import {
   SubstrateContextProvider,
-  useSubstrateState,
+  useSubstrateState
 } from '../../substrate-lib'
 import { DeveloperConsole } from '../../substrate-lib/components'
 
 import AccountSelector from '../../components/AccountSelector'
 import Balances from '../../components/Balances'
 import BlockNumber from '../../components/BlockNumber'
+import { ContactInfo } from '../../components/ContactInfo'
 import Events from '../../components/Events'
 import Metadata from '../../components/Metadata'
 import NodeInfo from '../../components/NodeInfo'
 import Transfer from '../../components/Transfer'
-import { ContactInfo } from '../../components/ContactInfo'
-import { Link } from 'react-router-dom'
 
 function Main() {
   const { apiState, apiError, keyringState } = useSubstrateState()
@@ -81,12 +80,8 @@ function Main() {
           </Grid.Row>
         </Grid>
       </Container>
-      <button>
-        <Link to="/organizations">click here</Link>
-      </button>
       <ContactInfo />
       <DeveloperConsole />
-      
     </div>
   )
 }
@@ -94,7 +89,7 @@ function Main() {
 export default function HomeScreen() {
   return (
     <SubstrateContextProvider>
-      <Main />      
+      <Main />
     </SubstrateContextProvider>
   )
 }
