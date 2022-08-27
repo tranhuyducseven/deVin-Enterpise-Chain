@@ -6,6 +6,7 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 
 use codec::{Decode, Encode};
+
 use core::convert::TryInto;
 use frame_support::{traits::GetCallMetadata, weights::DispatchInfo};
 pub use pallet::*;

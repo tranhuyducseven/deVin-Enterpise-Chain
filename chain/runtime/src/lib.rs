@@ -5,7 +5,7 @@
 // Make the WASM binary available.
 #[cfg(feature = "std")]
 include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
-
+use frame_system::EnsureRoot;
 use pallet_grandpa::{
 	fg_primitives, AuthorityId as GrandpaId, AuthorityList as GrandpaAuthorityList,
 };
@@ -43,10 +43,10 @@ use pallet_transaction_payment::CurrencyAdapter;
 pub use sp_runtime::BuildStorage;
 pub use sp_runtime::{Perbill, Permill};
 
-pub use pallet_organizations;
-pub use pallet_rbac;
 /// Import the template pallet.
 pub use pallet_template;
+pub use substrate_rbac;
+
 /// An index to a block.
 pub type BlockNumber = u32;
 
@@ -94,8 +94,8 @@ pub mod opaque {
 //   https://docs.substrate.io/v3/runtime/upgrades#runtime-versioning
 #[sp_version::runtime_version]
 pub const VERSION: RuntimeVersion = RuntimeVersion {
-	spec_name: create_runtime_str!("devin-enterprise"),
-	impl_name: create_runtime_str!("devin-enterprise"),
+	spec_name: create_runtime_str!("node-template"),
+	impl_name: create_runtime_str!("node-template"),
 	authoring_version: 1,
 	// The version of the runtime specification. A full node will not attempt to use its native
 	//   runtime in substitute for the on-chain Wasm runtime unless all of `spec_name`,
@@ -267,13 +267,15 @@ impl pallet_sudo::Config for Runtime {
 impl pallet_template::Config for Runtime {
 	type Event = Event;
 }
-impl pallet_organizations::Config for Runtime {
-	type Event = Event;
+
+
+
+impl substrate_rbac::Config for Runtime {
+    type Event = Event;
+    type RbacAdminOrigin = EnsureRoot<AccountId>;
 }
-impl pallet_rbac::Config for Runtime {
-	type Event = Event;
-	type RbacAdminOrigin = EnsureRoot<AccountId>;
-}
+
+
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
 	pub enum Runtime where
@@ -291,9 +293,7 @@ construct_runtime!(
 		Sudo: pallet_sudo,
 		// Include the custom logic from the pallet-template in the runtime.
 		TemplateModule: pallet_template,
-		Organizations: pallet_organizations,
-		RBAC: pallet_rbac::{Pallet, Call, Storage, Event<T>, Config<T>},
-
+		RBAC: substrate_rbac::{Pallet, Call, Storage, Event<T>, Config<T>},
 	}
 );
 
@@ -313,7 +313,7 @@ pub type SignedExtra = (
 	frame_system::CheckNonce<Runtime>,
 	frame_system::CheckWeight<Runtime>,
 	pallet_transaction_payment::ChargeTransactionPayment<Runtime>,
-	pallet_rbac:Authorize<Runtime>,
+	substrate_rbac::Authorize<Runtime>,
 );
 /// Unchecked extrinsic type as expected by this runtime.
 pub type UncheckedExtrinsic = generic::UncheckedExtrinsic<Address, Call, Signature, SignedExtra>;
