@@ -1,0 +1,3 @@
+[submodule "deVin-Enterpise-UI"]
+	path = deVin-Enterpise-UI
+	url = git@github.com:tranhuyducseven/deVin-Enterpise-UI.git
