@@ -86,15 +86,15 @@ pub fn development_config() -> Result<ChainSpec, String> {
 				vec![get_account_id_from_seed::<sr25519::Public>("Alice")]),
 				(Role { pallet: b"Organizations".to_vec(), permission: Permission::Manage },
 				vec![get_account_id_from_seed::<sr25519::Public>("Alice")]),
-				(Role { pallet: b"PalletProducts".to_vec(), permission: Permission::Manage },
+				(Role { pallet: b"Products".to_vec(), permission: Permission::Manage },
 				vec![get_account_id_from_seed::<sr25519::Public>("Alice")]),
-				(Role { pallet: b"PalletTracking".to_vec(), permission: Permission::Manage },
+				(Role { pallet: b"Tracking".to_vec(), permission: Permission::Manage },
 				vec![get_account_id_from_seed::<sr25519::Public>("Alice")]),
 				(Role { pallet: b"Balances".to_vec(), permission: Permission::Manage },
 				vec![get_account_id_from_seed::<sr25519::Public>("Alice")]),
 			],
 			// organizations
-			vec![(get_account_id_from_seed::<sr25519::Public>("Alice"), b"Supply Chain Consortium".to_vec())],
+			vec![(get_account_id_from_seed::<sr25519::Public>("Alice"), b"DeVin Group".to_vec())],
 			// organization members
 			vec![],
 			true,
@@ -149,7 +149,7 @@ pub fn local_testnet_config() -> Result<ChainSpec, String> {
 			// permissions
 			vec![],
 			// organizations
-			vec![],
+			vec![(get_account_id_from_seed::<sr25519::Public>("Alice"), b"DeVin Group".to_vec())],
 			// organization members
 			vec![],
 			true,
